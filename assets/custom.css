@@ -1,0 +1,51 @@
+/* Table of contents
+––––––––––––––––––––––––––––––––––––––––––––––––––
+- Banner
+- Dropdown
+- Tabs
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+:root  {--bg-color: #f1f1f1;
+        --font: Calibri;
+        --font-color-light: black;
+        --font-color-dark:  white;
+        --bg-color-light:   white;
+        --bg-color-dark:    black;
+        --color-success:    limegreen;
+        --color-failure:    red;
+        --tab-bg-color:     black;
+	    --banner-bg-color:  white; /*#1e2130;*/;
+	    --banner-text-color:black;
+		--border-bottom:    2px solid brown;
+	}
+
+::placeholder  {text-align: center;
+                justify-content: center;
+                font: 14px var(--font)}
+
+body {margin: 0px}
+
+.container { 
+    padding: 10px;
+}
+
+* {
+    box-sizing: border-box;
+    font-family: "Vesper Libre Bold";
+}
+
+.h-15vh {
+	height: 15vh;
+}
+
+.h-10vh {
+	height: 10vh;
+}
+
+button {
+    height: 20vh;
+    width: 100%
+}
+
+/* #home_page_div {
+    text-align: center;
+} */
