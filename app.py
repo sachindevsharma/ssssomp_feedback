@@ -4,6 +4,7 @@ from callbacks import Callbacks
 import dash_bootstrap_components as dbc
 import os
 
+print("Sachin", os.environ.get("username"))
 print(os.environ.keys())
 
 app = dash.Dash(__name__,
