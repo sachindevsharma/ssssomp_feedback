@@ -3,9 +3,15 @@ from layout import Layout
 from callbacks import Callbacks
 import dash_bootstrap_components as dbc
 import os
+import json
 
 print("Sachin", os.environ.get("username"))
-print(os.environ.keys())
+
+# Read the secrets from the file
+with open('etc/secrets/credentials', 'r') as file:
+    secrets = json.load(file)
+
+print("Sachin", secrets)
 
 app = dash.Dash(__name__,
                 title="SSSSO MP",
