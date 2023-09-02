@@ -5,7 +5,7 @@ import dash_bootstrap_components as dbc
 import os
 import json
 
-print("Sachin", os.environ.get("username"))
+print("Sachin", os.environ.get("USERNAME"))
 
 # Read the secrets from the file
 with open('etc/secrets/credentials', 'r') as file:
