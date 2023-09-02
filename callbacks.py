@@ -3,8 +3,8 @@ from dash import html, dcc, Input, State, Output, ctx
 from dash.exceptions import PreventUpdate
 from mongo_connector import MongoConnector
 
-# client = MongoConnector()
-# collection = client.get_collection("feedback", "count")
+client = MongoConnector()
+collection = client.get_collection("feedback", "sewa_feedback")
 
 def update_mongo_count(categ):
     collection.update_one({"type": categ.upper()}, {"$inc": {"count": 1}})

@@ -2,7 +2,9 @@ import dash
 from layout import Layout
 from callbacks import Callbacks
 import dash_bootstrap_components as dbc
+import os
 
+print(os.environ.keys())
 
 app = dash.Dash(__name__,
                 title="SSSSO MP",
