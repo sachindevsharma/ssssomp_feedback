@@ -7,9 +7,7 @@ class MongoConnector:
     
     def connect(self):
         MONGO_URL = self._get_mongo_url()        
-        print("Connecting MongoDB")
         client = MongoClient(MONGO_URL)
-        print("Connected")
         return client
     
     def get_database(self, db):
@@ -28,7 +26,6 @@ class MongoConnector:
             secrets = json.load(open("url.txt", "r"))      # FOR LOCAL DEVELOPMENT
             USERNAME = secrets.get("USERNAME")
             PASSWORD = secrets.get("PASSWORD")
-        print(USERNAME, PASSWORD)
         
         MONGO_URL = f"mongodb+srv://{USERNAME}:{PASSWORD}"
         MONGO_URL += "@ssssomp.pbugdaw.mongodb.net/"

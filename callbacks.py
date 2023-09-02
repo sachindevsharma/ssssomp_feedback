@@ -21,6 +21,7 @@ def Callbacks(app):
                   prevent_initial_call=True)
     def get_click_count(n1, n2):
         button_id = ctx.triggered_id if not None else 'No clicks yet'
+        print(button_id)
         if button_id == "yes_button":
             return  {"display": "None"}, {"display": "block"}, {"display": "None"}, True
         elif button_id == "no_button":
@@ -28,7 +29,7 @@ def Callbacks(app):
         else: 
             PreventUpdate
 
-    @app.callback(Output("home_page_div", "style"),
+    @app.callback(Output("home_page_div", "n_clicks"),
                   Input("yes_button", "n_clicks"),
                   Input("no_button", "n_clicks"),
                   prevent_initial_call=True)
@@ -36,6 +37,7 @@ def Callbacks(app):
         button_id = ctx.triggered_id if not None else 'No clicks yet'
         if button_id == "yes_button":
             update_mongo_count("YES")
+            print(1)
             PreventUpdate
         elif button_id == "no_button":
             update_mongo_count("NO")
