@@ -16,7 +16,10 @@ class MongoConnector:
 
         MONGO_URL = f"mongodb+srv://{USERNAME}:{PASSWORD}"
         MONGO_URL += "@ssssomp.pbugdaw.mongodb.net/?retryWrites=true&w=majority"
+        
+        print("Connecting MongoDB")
         client = MongoClient(MONGO_URL)
+        print("Connected")
         return client
     
     def get_database(self, db):
