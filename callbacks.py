@@ -29,18 +29,18 @@ def Callbacks(app):
         else: 
             PreventUpdate
 
-    @app.callback(Output("home_page_div", "n_clicks"),
-                  Input("yes_button", "n_clicks"),
-                  Input("no_button", "n_clicks"),
-                  prevent_initial_call=True)
-    def update_counts(n1, n2):
-        button_id = ctx.triggered_id if not None else 'No clicks yet'
-        if button_id == "yes_button":
-            update_mongo_count("YES")
-            print(1)
-            PreventUpdate
-        elif button_id == "no_button":
-            update_mongo_count("NO")
-            PreventUpdate
-        else: 
-            PreventUpdate
+    # @app.callback(Output("home_page_div", "n_clicks"),
+    #               Input("yes_button", "n_clicks"),
+    #               Input("no_button", "n_clicks"),
+    #               prevent_initial_call=True)
+    # def update_counts(n1, n2):
+    #     button_id = ctx.triggered_id if not None else 'No clicks yet'
+    #     if button_id == "yes_button":
+    #         update_mongo_count("YES")
+    #         print(1)
+    #         PreventUpdate
+    #     elif button_id == "no_button":
+    #         update_mongo_count("NO")
+    #         PreventUpdate
+    #     else: 
+    #         PreventUpdate

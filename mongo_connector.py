@@ -34,8 +34,6 @@ class MongoConnector:
             USERNAME = secrets.get("USERNAME")
             PASSWORD = secrets.get("PASSWORD")
 
-            
-        
         MONGO_URL = f"mongodb+srv://{USERNAME}:{PASSWORD}"
         MONGO_URL += "@ssssomp.pbugdaw.mongodb.net/"
         MONGO_URL += "?retryWrites=true&w=majority"
