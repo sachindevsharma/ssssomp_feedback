@@ -1,6 +1,7 @@
 import dash
 from dash import html, dcc, Input, State, Output, ctx
 from datetime import datetime
+import pytz
 from mongo_connector import MongoConnector
 
 client = MongoConnector()
@@ -8,7 +9,7 @@ collection = client.get_collection("feedback", "sewa_feedback")
 
 
 def update_mongo_count(categ):
-    date = datetime.now().strftime("%Y-%m-%d")
+    date = datetime.now(pytz.timezone('Asia/Kolkata')).strftime("%Y-%m-%d")
     results = collection.find_one({"date": date})
     if results is None:
         collection.insert_one({"date": date, "yes": 0, "no": 0})

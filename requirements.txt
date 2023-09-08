@@ -2,3 +2,4 @@ dash==2.13.0
 dash_bootstrap_components
 pymongo
 gunicorn
+pytz
