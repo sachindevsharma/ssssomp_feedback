@@ -61,6 +61,8 @@ def build_sad_div():
 				]),
 	    ])
 
+def not_found_404():
+     return html.H1("गलत जगह आ गए आप")
 
 def register_app_pages():
     page_values = [
@@ -71,3 +73,5 @@ def register_app_pages():
 	]       
     for order, (module , name, path, layout) in enumerate(page_values):
         dash.register_page(module, name=name, path=path, layout=layout, order=order)
+        
+    dash.register_page("not_found_404", layout=not_found_404())
