@@ -44,7 +44,8 @@ def build_happy_div():
 # 			html.P("बहुत अच्छे, ऐसे ही नियमित व्यक्तिगत साधना करते रहना।  साई राम।✨"),
 			dbc.Col(xs=12, sm=12, md=12, lg=6, xl=6, class_name="text-center", children=[
 				# html.Img(src=app.get_asset_url("swami_happy.jpeg")),
-				html.Video(id="video_tag", src=dash.get_asset_url("HAPPY.mp4"), controls=True, autoPlay=False, width="100%", preload="auto")
+				html.Video(id="video_tag", src=dash.get_asset_url("HAPPY.mp4"), 
+               				controls=True, autoPlay=True, width="100%", preload="auto")
 				]),
 	    ])
 
