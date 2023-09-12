@@ -1,10 +1,15 @@
 import dash
 from dash import html
 import dash_bootstrap_components as dbc
+from flask_caching import Cache
 
+CACHE = Cache(dash.get_app().server, config={
+    'CACHE_TYPE': 'filesystem',
+    'CACHE_DIR': 'cache-directory'
+})
 
 def Layout():
-	return dbc.Container([
+     return dbc.Container([
 		build_banner(),
 		html.Br(),
 		html.Div(id='second_div', children=[
@@ -38,15 +43,14 @@ def build_home_page():
 				dbc.Col(dbc.Button("नही, आज हम व्यक्तिगत साधना नही कर सके", color="danger", id="no_button"))
 				]),
 		])
-          
+
+
 def build_happy_div():
     return html.Div(id="happy_div", children=[
 # 			html.P("बहुत अच्छे, ऐसे ही नियमित व्यक्तिगत साधना करते रहना।  साई राम।✨"),
-			dbc.Col(xs=12, sm=12, md=12, lg=6, xl=6, class_name="text-center", children=[
-				# html.Img(src=app.get_asset_url("swami_happy.jpeg")),
-				html.Video(id="video_tag", src=dash.get_asset_url("HAPPY.mp4"), 
-               				controls=True, autoPlay=True, width="100%", preload="auto")
-				]),
+			dbc.Col(_happy_video(), 
+           			xs=12, sm=12, md=12, lg=6, xl=6, class_name="text-center",
+					),
 	    ])
 
 def build_sad_div():
@@ -56,9 +60,8 @@ def build_sad_div():
                 	  मैं खुद भगवान हूं। मैं अनंत हूं, शाश्वत हूं। मैं दो नहीं हूँ; मैं एक हूँ, केवल एक। मेरे अलावा और कोई नहीं है। 
                    	  मैं और ईश्वर एक ही हैं।" इस एकता को महसूस करने के लिए, पहला कदम है आत्मविश्वास विकसित करना। 
                       यह तब आता है जब आपको पता चलता है कि ईश्वर आपके बाहर नहीं है।" - भगवान बाबा'''),
-			dbc.Col(xs=12, sm=12, md=12, lg=12, xl=12, class_name="text-center", children=[
-				html.Img(src=dash.get_asset_url("swami_angry.jpeg")),
-				]),
+			dbc.Col(_sad_image(),
+					xs=12, sm=12, md=12, lg=12, xl=12, class_name="text-center"),
 	    ])
 
 def not_found_404():
@@ -75,3 +78,15 @@ def register_app_pages():
         dash.register_page(module, name=name, path=path, layout=layout, order=order)
         
     dash.register_page("not_found_404", layout=not_found_404())
+    
+
+
+@CACHE.memoize(timeout=86400) 
+def _happy_video():
+	return html.Video(id="video_tag", src=dash.get_asset_url("HAPPY.mp4"), 
+					controls=True, autoPlay=True, width="100%", preload="auto")
+
+@CACHE.memoize(timeout=86400) 
+def _sad_image():
+	return html.Img(src=dash.get_asset_url("swami_angry.jpeg"))
+				
