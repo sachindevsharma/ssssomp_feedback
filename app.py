@@ -12,6 +12,7 @@ server = app.server
 
 from layout import Layout, register_app_pages
 from callbacks import Callbacks
+
 register_app_pages()
 app.layout = Layout()
 Callbacks()
