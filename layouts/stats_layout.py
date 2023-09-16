@@ -41,13 +41,13 @@ def build_stats_page():
         dbc.Col([
             dcc.Graph(id="daily_response_fig", 
                       figure=daily_stats_fig, 
-                      config={"displayModeBar": False})
+                      config={"displayModeBar": False, "scrollZoom": False})
         ]),
         html.Br(),
         dbc.Col([
             dcc.Graph(id="monthly_response_fig", 
                       figure=monthly_stats_fig,
-                      config={"displayModeBar": False})
+                      config={"displayModeBar": False, "scrollZoom": False})
         ]),
         dcc.Store(id="daily_response_data"),
         dcc.Store(id="monthly_response_data"),
