@@ -46,6 +46,12 @@ button {
     width: 100%
 }
 
+.center {
+    display: flex;
+    align-items: center;
+    background-color: antiquewhite;
+  }
+
 /* #home_page_div {
     text-align: center;
 } */

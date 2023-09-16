@@ -27,7 +27,7 @@ def build_stats_page():
     )
 
     return html.Div(id="stats_div", children=[
-        dbc.Row([
+        dbc.Row(class_name="center", children=[
             dbc.Col(html.H3("Today's Counter"), width="auto"),
             dbc.Col(
                 daq.LEDDisplay(value=0, id='stats_yes_led', label="YES"), 
