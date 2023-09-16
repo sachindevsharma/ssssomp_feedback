@@ -62,10 +62,9 @@ def stats_callbacks():
                    Output("stats_yes_led", "value"),
                    Output("stats_no_led", "value"),
                    Input("daily_response_data", "data"),
-                   State("daily_response_fig", "figure"),
                    prevent_initial_call=True
                   )
-    def update_figure(data, fig):
+    def update_figure(data):
         today_data, today = get_today_data()
         data["dates"].append(today)
         if today_data:
@@ -76,6 +75,7 @@ def stats_callbacks():
         data["yes_cnt"].append(yes)
         data["no_cnt"].append(no)
 
+        fig = dash.Patch()    # Partial update of graph
         fig["data"][0]["x"], fig["data"][0]["y"] = data["dates"], data["yes_cnt"]
         fig["data"][1]["x"], fig["data"][1]["y"] = data["dates"], data["no_cnt"]
         return [fig, yes, no]
@@ -83,7 +83,6 @@ def stats_callbacks():
 
     @dash.callback(Output("monthly_response_fig", "figure"),
                    Input("monthly_response_data", "data"),
-                   State("monthly_response_fig", "figure"),
                    prevent_initial_call=True
                   )
     def update_figure(data, fig):
@@ -101,6 +100,7 @@ def stats_callbacks():
         data["yes_cnt"].append(yes)
         data["no_cnt"].append(no)
 
+        fig = dash.Patch()    # Partial update of graph
         fig["data"][0]["x"], fig["data"][0]["y"] = data["dates"], data["yes_cnt"]
         fig["data"][1]["x"], fig["data"][1]["y"] = data["dates"], data["no_cnt"]
         return fig

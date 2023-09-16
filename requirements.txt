@@ -5,3 +5,4 @@ gunicorn
 pytz
 flask-caching
 dash-daq
+pandas
