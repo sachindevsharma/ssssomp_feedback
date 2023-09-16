@@ -14,6 +14,7 @@ def build_stats_page():
     daily_stats_fig.update_layout(
         title="Daily Response Count",
         showlegend=False,
+        margin={"t": 30, "b": 0, "l":0, "r": 0}
     )
 
     monthly_stats_fig = go.Figure()
@@ -21,6 +22,7 @@ def build_stats_page():
     monthly_stats_fig.update_layout(
         title="Monthly Response Count",
         showlegend=False,
+        margin={"t": 30, "b": 0, "l":0, "r": 0},
         xaxis={"tickformat": "%b %Y"}
     )
 
@@ -35,11 +37,13 @@ def build_stats_page():
                 daq.LEDDisplay(value=0, id='stats_no_led', label="NO"),
                 width="auto")
         ]),
+        html.Br(),
         dbc.Col([
             dcc.Graph(id="daily_response_fig", 
                       figure=daily_stats_fig, 
                       config={"displayModeBar": False})
         ]),
+        html.Br(),
         dbc.Col([
             dcc.Graph(id="monthly_response_fig", 
                       figure=monthly_stats_fig,
