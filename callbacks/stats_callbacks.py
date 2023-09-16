@@ -25,8 +25,6 @@ def collect_historical_data(today):
     daily_df = df[df["date"] < today][df["month"] == this_month]
 
     df["year"] = [i[:4] + "-01-01" for i in df["date"]]
-    print(df)
-    print(this_month)
     month_df = df[df["month"] < this_month]\
         .groupby("month").agg({"yes": "sum", "no": "sum"}).fillna(0).reset_index()
 
@@ -85,7 +83,7 @@ def stats_callbacks():
                    Input("monthly_response_data", "data"),
                    prevent_initial_call=True
                   )
-    def update_figure(data, fig):
+    def update_figure(data):
         today_data, today = get_today_data()
         daily_df, _ = collect_historical_data(today)
         data["dates"].append(today[:7] + "-01")
