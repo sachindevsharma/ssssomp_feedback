@@ -7,21 +7,7 @@ from mongo_connector import MongoConnector
 client = MongoConnector()
 collection = client.get_collection("feedback", "sewa_feedback")
 
-
-def update_mongo_count(categ):
-    date = datetime.now(pytz.timezone('Asia/Kolkata')).strftime("%Y-%m-%d")
-    results = collection.find_one({"date": date})
-    if results is None:
-        collection.insert_one({"date": date, "yes": 0, "no": 0})
-
-    collection.update_one({"date": date}, {"$inc": {categ.lower(): 1}})
-    
-
-def _get_nav_link(page):
-    return dash.page_registry[page]["relative_path"]
-
-
-def Callbacks():
+def home_page_callbacks():
     @dash.callback([Output("yes_button", "href"),
                     Output("no_button", "href")],
                    Input("home_page_div", "n_clicks"))
@@ -46,3 +32,18 @@ def Callbacks():
             dash.no_update
         else: 
             dash.no_update
+
+
+def update_mongo_count(categ):
+    date = datetime.now(pytz.timezone('Asia/Kolkata')).strftime("%Y-%m-%d")
+    results = collection.find_one({"date": date})
+    if results is None:
+        collection.insert_one({"date": date, "yes": 0, "no": 0})
+
+    collection.update_one({"date": date}, {"$inc": {categ.lower(): 1}})
+    
+
+def _get_nav_link(page):
+    return dash.page_registry[page]["relative_path"]
+
+

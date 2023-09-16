@@ -10,7 +10,7 @@ app = dash.Dash(__name__,
                 suppress_callback_exceptions=True)
 server = app.server
 
-from layout import Layout, register_app_pages
+from layouts import Layout, register_app_pages
 from callbacks import Callbacks
 
 register_app_pages()

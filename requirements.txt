@@ -4,3 +4,4 @@ pymongo
 gunicorn
 pytz
 flask-caching
+dash-daq

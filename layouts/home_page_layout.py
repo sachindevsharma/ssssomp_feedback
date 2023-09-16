@@ -8,26 +8,6 @@ CACHE = Cache(dash.get_app().server, config={
     'CACHE_DIR': 'cache-directory'
 })
 
-def Layout():
-     return dbc.Container([
-		build_banner(),
-		html.Br(),
-		html.Div(id='second_div', children=[
-            dash.page_container
-        # END OF 2nd Division   
-        ]),
-		# html.Footer("Footer")
-	])
-
-
-def build_banner():
-    return  dbc.Row([
-        dbc.Col(xs=12, sm=12, md=12, lg=12, xl=12, class_name="h-15vh", children=[
-            html.Img(className="w-100 h-100", src=dash.get_asset_url("title.jpeg")),
-			]),
-		])
-
-
 def build_home_page():
     return html.Div(id="home_page_div", children=[
 			# html.H3("✨आध्यात्मिक विभाग के अंतर्गत व्यक्तिगत साधना का फीडबैक फॉर्म।✨", className="text-center",),
@@ -63,23 +43,6 @@ def build_sad_div():
 			dbc.Col(_sad_image(),
 					xs=12, sm=12, md=12, lg=12, xl=12, class_name="text-center"),
 	    ])
-
-def not_found_404():
-     return html.H1("गलत जगह आ गए आप")
-
-def register_app_pages():
-    page_values = [
-		# id , name, path, layout
-		["home", "Home", '/', build_home_page()],
-		["happy", "Happy", '/happy', build_happy_div()],
-		["sad", "Sad", '/sad', build_sad_div()],
-	]       
-    for order, (module , name, path, layout) in enumerate(page_values):
-        dash.register_page(module, name=name, path=path, layout=layout, order=order)
-        
-    dash.register_page("not_found_404", layout=not_found_404())
-    
-
 
 @CACHE.memoize(timeout=86400) 
 def _happy_video():
