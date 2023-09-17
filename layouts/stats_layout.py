@@ -14,7 +14,9 @@ def build_stats_page():
     daily_stats_fig.update_layout(
         title="Daily Response Count",
         showlegend=False,
-        margin={"t": 30, "b": 0, "l":0, "r": 0}
+        margin={"t": 30, "b": 0, "l":0, "r": 0},
+        xaxis={"fixedrange": True},
+        yaxis={"fixedrange": True},
     )
 
     monthly_stats_fig = go.Figure()
@@ -23,7 +25,8 @@ def build_stats_page():
         title="Monthly Response Count",
         showlegend=False,
         margin={"t": 30, "b": 0, "l":0, "r": 0},
-        xaxis={"tickformat": "%b %Y"}
+        xaxis={"fixedrange": True, "tickformat": "%b %Y"},
+        yaxis={"fixedrange": True},
     )
 
     return html.Div(id="stats_div", children=[
@@ -41,7 +44,7 @@ def build_stats_page():
         dbc.Col([
             dcc.Graph(id="daily_response_fig", 
                       figure=daily_stats_fig, 
-                      config={"displayModeBar": False, "scrollZoom": False})
+                      config={"displayModeBar": False})
         ]),
         html.Br(),
         dbc.Col([
