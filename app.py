@@ -5,8 +5,9 @@ app = dash.Dash(__name__,
                 title="SSSSO MP",
                 use_pages=True, 
                 pages_folder="",
+                update_title=None,
                 external_stylesheets=[dbc.themes.BOOTSTRAP,
-                                      'https://use.fontawesome.com/releases/v5.8.1/css/all.css'], 
+                                      'https://use.fontawesome.com/releases/v6.4.2/css/all.css'], 
                 suppress_callback_exceptions=True)
 server = app.server
 

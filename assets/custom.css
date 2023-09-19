@@ -24,13 +24,21 @@
 
 body {margin: 0px}
 
-.container { 
+/* .container { 
     padding: 10px;
-}
+} */
 
 * {
     box-sizing: border-box;
     font-family: "Vesper Libre Bold";
+}
+
+/* #second_div {
+    min-height: 75vh;
+} */
+
+#home_page_div {
+    width: 100%;
 }
 
 .h-15vh {
@@ -41,8 +49,12 @@ body {margin: 0px}
 	height: 10vh;
 }
 
+.line_break {
+    height: 2vh;
+}
+
 button {
-    height: 20vh !important;
+    /* height: 20vh !important; */
     width: 100%
 }
 
@@ -52,6 +64,63 @@ button {
     background-color: antiquewhite;
   }
 
-/* #home_page_div {
-    text-align: center;
-} */
+.cards {
+    padding: 5px;
+    margin: 2px;
+    object-fit: fill;
+    border: 2px solid black
+}
+
+.card-img-overlay {
+    height: auto !important;
+}
+
+.card-img {
+    object-fit: contain;
+    opacity: 0.2;
+}
+
+.card_question {
+    display: flex;
+    justify-content: center;
+    font-weight: bold;
+    color: #0000FF;
+}
+
+.yes_message {
+    font-size: 2vh;
+    color: green;
+    border: 1px solid green;
+    justify-content: center;
+    display: flex;
+    align-items: center;
+    border-radius: 5px;
+}
+
+.no_message {
+    font-size: 2vh;
+    color: red;
+    border: 1px solid red;
+    justify-content: center;
+    display: flex;
+    align-items: center;
+    border-radius: 5px;
+    margin: 5px
+}
+
+.home_card {
+    background-color: #a3bae6;
+    height: 500px;
+    justify-content: center;
+    display: flex;
+    margin-bottom: 1vh;
+  }
+
+.fa-thumbs-up {
+    color: green;
+}
+
+.fa-thumbs-down {
+    color: red;
+}
+

@@ -9,14 +9,13 @@ from .not_found_404 import not_found_404
 
 def Layout():
      return dbc.Container([
-		build_banner(),
-		html.Br(),
-		html.Div(id='second_div', children=[
-            dash.page_container
-        # END OF 2nd Division   
-        ]),
-		# html.Footer("Footer")
-	])
+            build_banner(),
+            html.Div(id='second_div', children=[
+                dash.page_container
+            # END OF 2nd Division   
+            ]),
+            # html.Footer("Footer")
+    ])
 
 
 def register_app_pages():
@@ -34,10 +33,8 @@ def register_app_pages():
     
 
 def build_banner():
-    return  dbc.Row([
-        dbc.Col(xs=12, sm=12, md=12, lg=12, xl=12, class_name="h-15vh", children=[
-            html.Img(className="w-100 h-100", src=dash.get_asset_url("title.jpeg")),
-			]),
-		])
+    return  dbc.Col(xs=12, sm=12, md=12, lg=12, xl=12, class_name="h-15vh", children=[
+            html.Img(className="w-100 h-100", src=dash.get_asset_url("header.jpeg")),
+			])
 
 
