@@ -31,9 +31,9 @@ def build_home_page():
             dbc.Row([
 				dbc.Col(generate_card("q1", question1, "narayan_sewa_sq.jpg"), 
             			**width_dict_multi(12, 6, 6)),
-                dbc.Col(className="line_break", **width_dict_multi(12, 0, 0)),
-                dbc.Col(generate_card("q2", question2, "ladies_day.jpg"), 
-                        **width_dict_multi(12, 6, 6)),
+                # dbc.Col(className="line_break", **width_dict_multi(12, 0, 0)),
+                # dbc.Col(generate_card("q2", question2, "ladies_day.jpg"), 
+                #         **width_dict_multi(12, 6, 6)),
 			]),
             html.Br(),
 			dbc.Col(dbc.Button("SUBMIT", id="submit_button", color="primary"),

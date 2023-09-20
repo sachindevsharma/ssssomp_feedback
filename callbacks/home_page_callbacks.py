@@ -1,17 +1,20 @@
+import os
 import dash
 from dash import html, dcc, Input, State, Output, ctx
 from datetime import datetime
 import pytz
 from mongo_connector import MongoConnector
-import flask
 from flask_caching import Cache
+from config import Config
+
+CONFIG = Config()
 
 CACHE = Cache(dash.get_app().server, config={
     'CACHE_TYPE': 'filesystem',
     'CACHE_DIR': 'cache-directory'
 })
 
-n_questions = 2
+n_questions = 1
 
 sm_up_icon = "fa fa-regular fa-thumbs-up fa-4x"
 lg_up_icon = "fa fa-regular fa-thumbs-up fa-6x"
@@ -20,7 +23,7 @@ sm_down_icon = "fa fa-regular fa-thumbs-down fa-4x"
 lg_down_icon = "fa fa-regular fa-thumbs-down fa-6x"
 
 client = MongoConnector()
-collection = client.get_collection("feedback", "sewa_feedback")
+collection = client.get_collection(CONFIG.DATABASE_NAME, CONFIG.COLLECTION_NAME)
 
 def home_page_callbacks():
     @dash.callback([Output("yes_button", "href"),
@@ -114,6 +117,7 @@ def home_page_callbacks():
 
 
 def update_mongo_count(count_dict):
+    print(count_dict)
     date = datetime.now(pytz.timezone('Asia/Kolkata')).strftime("%Y-%m-%d")
     results = collection.find_one({"date": date})
     if results is None:
@@ -123,8 +127,8 @@ def update_mongo_count(count_dict):
 
     collection.update_one({"date": date}, {"$inc": {"narayan_sewa.yes": count_dict["q1"]["yes"]}})
     collection.update_one({"date": date}, {"$inc": {"narayan_sewa.no": count_dict["q1"]["no"]}})
-    collection.update_one({"date": date}, {"$inc": {"mahila_sadhna.yes": count_dict["q2"]["yes"]}})
-    collection.update_one({"date": date}, {"$inc": {"mahila_sadhna.no": count_dict["q2"]["no"]}})
+    # collection.update_one({"date": date}, {"$inc": {"mahila_sadhna.yes": count_dict["q2"]["yes"]}})
+    # collection.update_one({"date": date}, {"$inc": {"mahila_sadhna.no": count_dict["q2"]["no"]}})
     
 
 def _get_nav_link(page):

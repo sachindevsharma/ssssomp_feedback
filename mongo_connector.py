@@ -1,6 +1,9 @@
 from pymongo import MongoClient
 import os
 import json
+from config import Config
+
+CONFIG = Config()
 
 
 class MongoConnector:
@@ -30,15 +33,8 @@ class MongoConnector:
         return client[db][collection]  
     
     def _get_mongo_url(self):
-        USERNAME = os.environ.get("USERNAME", None)
-        PASSWORD = os.environ.get("PASSWORD", None)
 
-        if USERNAME is None or PASSWORD is None:
-            secrets = json.load(open("url.txt", "r"))      # FOR LOCAL DEVELOPMENT
-            USERNAME = secrets.get("USERNAME")
-            PASSWORD = secrets.get("PASSWORD")
-
-        MONGO_URL = f"mongodb+srv://{USERNAME}:{PASSWORD}"
+        MONGO_URL = f"mongodb+srv://{CONFIG.USERNAME}:{CONFIG.PASSWORD}"
         MONGO_URL += "@ssssomp.pbugdaw.mongodb.net/"
         MONGO_URL += "?retryWrites=true&w=majority"
 
