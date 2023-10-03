@@ -10,11 +10,7 @@ class MongoConnector:
     
     def connect(self):
         MONGO_URL = self._get_mongo_url() 
-        try:       
-            client = MongoClient(MONGO_URL)
-        except:
-            print("connecting local version")
-            client = MongoClient("mongodb://localhost:27017/")
+        client = MongoClient(MONGO_URL)
 
         # Send a ping to confirm a successful connection
         try:

@@ -1,6 +1,12 @@
 import os
 import json
 
+# url.txt will contain data as below
+# {"USERNAME": "username", 
+#  "PASSWORD": "password", 
+#  "DATABASE_NAME": "db",
+#  "FEEDBACK_COLLECTION": "col1",
+#  "QUESTIONS_COLLECTION": "col2"}
 
 class Config:
 
@@ -37,8 +43,15 @@ class Config:
             return os.environ.get("DATABASE_NAME")
     
     @property
-    def COLLECTION_NAME(self):
+    def FEEDBACK_COLLECTION(self):
         if self.is_local:
-            return self._get_secrets().get("COLLECTION_NAME")
+            return self._get_secrets().get("FEEDBACK_COLLECTION")
         else:
-            return os.environ.get("COLLECTION_NAME")
+            return os.environ.get("FEEDBACK_COLLECTION")
+        
+    @property
+    def QUESTIONS_COLLECTION(self):
+        if self.is_local:
+            return self._get_secrets().get("QUESTIONS_COLLECTION")
+        else:
+            return os.environ.get("QUESTIONS_COLLECTION")

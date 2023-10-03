@@ -23,7 +23,7 @@ sm_down_icon = "fa fa-regular fa-thumbs-down fa-4x"
 lg_down_icon = "fa fa-regular fa-thumbs-down fa-6x"
 
 client = MongoConnector()
-collection = client.get_collection(CONFIG.DATABASE_NAME, CONFIG.COLLECTION_NAME)
+collection = client.get_collection(CONFIG.DATABASE_NAME, CONFIG.FEEDBACK_COLLECTION)
 
 def home_page_callbacks():
     @dash.callback([Output("yes_button", "href"),
@@ -86,8 +86,6 @@ def home_page_callbacks():
         *ques_yes_div, *ques_no_div,
         prevent_initial_call=True)
     def open_page(n, is_open, *args):
-        # if lg_up_icon in args or lg_down_icon in args:
-            # print("Error")
         if lg_up_icon in args:
             return _get_nav_link("happy"), True
         else:
@@ -117,7 +115,6 @@ def home_page_callbacks():
 
 
 def update_mongo_count(count_dict):
-    print(count_dict)
     date = datetime.now(pytz.timezone('Asia/Kolkata')).strftime("%Y-%m-%d")
     results = collection.find_one({"date": date})
     if results is None:

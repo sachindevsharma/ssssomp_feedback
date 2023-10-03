@@ -5,6 +5,9 @@ import pytz
 from datetime import datetime
 from mongo_connector import MongoConnector
 from flask_caching import Cache
+from config import Config
+
+CONFIG = Config()
 
 CACHE = Cache(dash.get_app().server, config={
     'CACHE_TYPE': 'filesystem',
@@ -12,15 +15,17 @@ CACHE = Cache(dash.get_app().server, config={
 })
 
 client = MongoConnector()
-collection = client.get_collection("feedback", "sewa_feedback")
-
+collection = client.get_collection(CONFIG.DATABASE_NAME, CONFIG.FEEDBACK_COLLECTION)
+sewa_type="narayan_sewa"
 
 @CACHE.memoize(timeout=86400) 
 def collect_historical_data(today):
     this_month = today[:7] + "-01"
-
-    results = list(collection.find({}))
-    df = pd.DataFrame(results).drop(["_id"], axis=1).sort_values("date")
+    project = {"_id": 0}
+    results = list(collection.find({}, project)) 
+    results = [{"date": i["date"], "yes": i[sewa_type]["yes"], "no": i[sewa_type]["no"]}
+               for i in results]   
+    df = pd.DataFrame(results).sort_values("date")
     df["month"] = [i[:7] + "-01" for i in df["date"]]
     daily_df = df[df["date"] < today][df["month"] == this_month]
 
@@ -34,6 +39,10 @@ def collect_historical_data(today):
 def get_today_data():
     today = datetime.now(pytz.timezone('Asia/Kolkata')).strftime("%Y-%m-%d")
     results = collection.find_one({"date": today})
+    results = {"date": results["date"], 
+               "yes": results[sewa_type]["yes"], 
+               "no": results[sewa_type]["no"]
+              }    
     return results, today
 
 
