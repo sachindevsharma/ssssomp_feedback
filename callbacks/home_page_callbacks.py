@@ -86,8 +86,6 @@ def home_page_callbacks():
         *ques_yes_div, *ques_no_div,
         prevent_initial_call=True)
     def open_page(n, is_open, *args):
-        # if lg_up_icon in args or lg_down_icon in args:
-            # print("Error")
         if lg_up_icon in args:
             return _get_nav_link("happy"), True
         else:

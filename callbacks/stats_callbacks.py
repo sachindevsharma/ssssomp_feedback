@@ -25,7 +25,6 @@ def collect_historical_data(today):
     results = list(collection.find({}, project)) 
     results = [{"date": i["date"], "yes": i[sewa_type]["yes"], "no": i[sewa_type]["no"]}
                for i in results]   
-    print(results)
     df = pd.DataFrame(results).sort_values("date")
     df["month"] = [i[:7] + "-01" for i in df["date"]]
     daily_df = df[df["date"] < today][df["month"] == this_month]
@@ -40,7 +39,6 @@ def collect_historical_data(today):
 def get_today_data():
     today = datetime.now(pytz.timezone('Asia/Kolkata')).strftime("%Y-%m-%d")
     results = collection.find_one({"date": today})
-    print(results)
     results = {"date": results["date"], 
                "yes": results[sewa_type]["yes"], 
                "no": results[sewa_type]["no"]
